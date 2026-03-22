@@ -167,11 +167,16 @@ curl -X POST http://localhost:8001/api/seed
 
 ## Connecting Outlook (Microsoft Graph API)
 
-The Outlook integration code is **already in `server.py`** — it activates when you set the three Microsoft env vars. Steps to get the Microsoft ID's and values - 
+The Outlook integration code is **already in `server.py`** — it activates when you set the three Microsoft env vars. Steps to get the Microsoft ID's and values
+
 Step 1 — Create a Microsoft Account
+
 Step 2 — Sign Into Azure Portal
+
 Step 3 — Go to Azure Active Directory > App Registrations
+
 Step 4 — Create a New App Registration
+
 --In the left sidebar, click "App registrations"
 --Click "+ New registration" at the top
 --Fill in the form:
@@ -179,6 +184,7 @@ Step 4 — Create a New App Registration
 ---Supported account types: Select this option:
 ---Accounts in any organizational directory (Any Azure AD directory - Multitenant) and personal Microsoft accounts (e.g. Skype, Xbox)
 --Click "Register"
+
 Step 5 — Fix Token Version (Required for Personal Accounts)
 --In the left sidebar, click "Manifest"
 --Find this line in the JSON:
@@ -186,7 +192,9 @@ Step 5 — Fix Token Version (Required for Personal Accounts)
 ---change to "requestedAccessTokenVersion": 2,
 --Click "Save" at the top
 --Go back to "Authentication" in the sidebar and change the supported account types to Multitenant + personal accounts
+
 Step 6 — Copy Your CLIENT_ID and TENANT_ID
+
 Step 7 — Add API Permissions
 --In the left sidebar, click "API permissions"
 --Click "+ Add a permission"
@@ -198,6 +206,7 @@ Mail.ReadWrite
 Mail.Send
 offline_access
 --Click "Add permissions"
+
 Step 8 — Add Redirect URI
 --In the left sidebar, click "Authentication"
 --Click "+ Add a platform"
@@ -206,6 +215,7 @@ Step 8 — Add Redirect URI
 --Scroll down to "Advanced settings"
 --Set "Allow public client flows" to Yes
 --Click "Save"
+
 Step 9 — Create a Client Secret
 --In the left sidebar, click "Certificates & secrets"
 --Click "+ New client secret"
@@ -214,8 +224,10 @@ Description: MVP Secret
 Expires: 24 months
 --Click "Add"
 --You will see the secret appear in the table Copy the VALUE column immediately. This is your MICROSOFT_CLIENT_SECRET which you need to add in /backend/.env
+
 Step 10 — Your Final Credentials
 --You should now have all three values:MICROSOFT_CLIENT_ID, MICROSOFT_CLIENT_SECRET, MICROSOFT_TENANT_ID
+
 Step 11 — Authenticate Outlook (One-Time Step)
 --Create this file on your Desktop:
 --nano ~/Desktop/generate_url.py
